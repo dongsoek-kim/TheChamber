@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpPlayform : MonoBehaviour
+public class JumpPlatform : HandleItem
 {
+    public ItemData data;
 
     public float jumpPower;
     private void OnCollisionEnter(Collision collision)
