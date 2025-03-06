@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public PlayerController controller;
     public Oil oil;
     public Handle hand;
-    public bool[] key=new bool[3];
+    public bool[] keycard=new bool[3];
     public ItemData itemData;
     private void Awake()
     {

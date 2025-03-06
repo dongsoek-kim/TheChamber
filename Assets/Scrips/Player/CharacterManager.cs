@@ -44,7 +44,7 @@ public class CharacterManager : MonoBehaviour
     public void GetCard(Keycard index)
     {
         Debug.Log(index.ToString());
-        Player.key[(int)index] = true;
+        Player.keycard[(int)index] = true;
         getCard?.Invoke((int)index);
     }
 }

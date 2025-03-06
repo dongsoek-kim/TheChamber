@@ -21,7 +21,6 @@ public class PlayerController : MonoBehaviour
     private Vector2 mouseDelta;
     public bool canLook = true;
 
-
     public Action option;
     private Rigidbody _rigidbody;
 
@@ -92,13 +91,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-
-
     public void JumpPlatform(float jumpPower)
     {    
             _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
     }
+
     bool IsGrounded()
     {
 
@@ -111,6 +108,7 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
+
     public void OnOption(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)
@@ -119,6 +117,29 @@ public class PlayerController : MonoBehaviour
             ToggleCursor();
         }
     }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        Camera camera;
+        camera= Camera.main;
+        float maxCheckDistance = 1;
+        GameObject curInteractGameObject;
+        if (context.phase == InputActionPhase.Started)
+        {
+            Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, maxCheckDistance))
+            {
+                if (hit.collider.gameObject.CompareTag("Access"))
+                {
+                    Door door = hit.collider.transform.parent.GetComponent<Door>();
+                    door.DoorOpen();
+                }
+            }
+        }
+    }
+
     void ToggleCursor()
     {
         bool toggle = Cursor.lockState == CursorLockMode.Locked;
