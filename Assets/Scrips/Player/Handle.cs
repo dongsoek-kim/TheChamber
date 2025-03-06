@@ -21,7 +21,7 @@ public class Handle : MonoBehaviour
         if (!nowEuqipped)
         {
             Debug.Log("손에 프리팹생성");
-            curHandleItem = Instantiate(data.HandlePrefab, rightHand).GetComponent<HandleItem>();
+            curHandleItem = Instantiate(data.handlePrefab, rightHand).GetComponent<HandleItem>();
             nowEuqipped = true;
         }
     }

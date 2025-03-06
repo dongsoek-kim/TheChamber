@@ -19,5 +19,7 @@ MonoBehaviour:
     type: 3}
   oilfill:
     value: 0
-  HandlePrefab: {fileID: 9014154092674790642, guid: 5c569df58c350fc42b0414605ef2c1eb,
+  handlePrefab: {fileID: 9014154092674790642, guid: 5c569df58c350fc42b0414605ef2c1eb,
+    type: 3}
+  ghostPrefab: {fileID: 7910805091205618236, guid: 24c3c3ac3a451424abf5b94f0abc2daf,
     type: 3}

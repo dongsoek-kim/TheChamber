@@ -7,29 +7,66 @@ public class Arrange : MonoBehaviour
 {
     new private Camera camera;
     public float arrangeDistance;
+    private GameObject ghostObject;
+    public Transform displaytran;
     void Start()
     {
         camera = Camera.main;
+    }
+
+    private void Update()
+    {
+        if (CharacterManager.Instance.Player.itemData != null)
+            Ghosting();
     }
     public void OnArrange(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started && CharacterManager.Instance.Player.hand.NowEuqipped())
         {
-            CharacterManager.Instance.Player.hand.Arrange();
-
-            Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-            RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, arrangeDistance))
-            {
-                // ì¶©ëŒí•œ ì˜¤ë¸Œì íŠ¸ì˜ íƒœê·¸ê°€ "Ground"ì¸ì§€ í™•ì¸
-                if (hit.collider.CompareTag("Ground"))
-                {
-                    Debug.Log("Ray hit the ground!");
-                }
-            }
-            
+            Instantiate(CharacterManager.Instance.Player.itemData.dropPrefab, ghostObject.transform.position, Quaternion.identity);
             CharacterManager.Instance.Player.hand.Arrange();
             CharacterManager.Instance.Player.itemData = null;
+            Destroy(ghostObject);
+        }
+    }
+    public void Ghosting()
+    {
+
+        Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
+        RaycastHit hit;
+
+        // Raycast·Î Ãæµ¹ È®ÀÎ
+        if (Physics.Raycast(ray, out hit, arrangeDistance))
+        {
+            // Ãæµ¹ÇÑ ¿ÀºêÁ§Æ®°¡ "Ground"ÀÎ °æ¿ì
+            if (hit.collider.CompareTag("Ground"))
+            {
+                // À­¸é(Áö¸é)¿¡ Ãæµ¹ÇÑ °æ¿ì
+                if (hit.normal == Vector3.up)
+                {
+                    // ¹Ì¸®º¸±â ¾ÆÀÌÅÛÀÌ ¾ø´Ù¸é »ı¼º
+                    if (ghostObject == null)
+                    {
+                        ghostObject = Instantiate(CharacterManager.Instance.Player.itemData.ghostPrefab, hit.point, Quaternion.identity);
+                    }
+
+                    // ¹Ì¸®º¸±â ¾ÆÀÌÅÛÀ» Ãæµ¹ À§Ä¡¿¡ ¾÷µ¥ÀÌÆ®
+                    ghostObject.transform.position = new Vector3(
+                        Mathf.RoundToInt(hit.point.x),  // XÁÂÇ¥¸¦ Á¤¼ö·Î ¹İ¿Ã¸²
+                        Mathf.RoundToInt(hit.point.y),  // YÁÂÇ¥¸¦ Á¤¼ö·Î ¹İ¿Ã¸²
+                        Mathf.RoundToInt(hit.point.z)   // ZÁÂÇ¥¸¦ Á¤¼ö·Î ¹İ¿Ã¸²
+                    );
+                    ghostObject.SetActive(true);
+                }
+            }
+        }
+        else
+        {
+            // ·¹ÀÌ°¡ Áö¸é¿¡ ´êÁö ¾ÊÀ¸¸é ¹Ì¸®º¸±â ¾ÆÀÌÅÛÀ» ºñÈ°¼ºÈ­
+            if (ghostObject != null)
+            {
+                ghostObject.SetActive(false);
+            }
         }
     }
 }

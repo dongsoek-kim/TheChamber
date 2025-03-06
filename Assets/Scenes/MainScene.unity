@@ -376,8 +376,8 @@ MonoBehaviour:
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 87356177}
-        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+      - m_Target: {fileID: 87356183}
+        m_TargetAssemblyTypeName: Arrange, Assembly-CSharp
         m_MethodName: OnArrange
         m_Mode: 0
         m_Arguments:
@@ -483,6 +483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrangeDistance: 3
+  displaytran: {fileID: 0}
 --- !u!1 &206317606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,7 +1080,7 @@ GameObject:
   - component: {fileID: 1443543019}
   m_Layer: 6
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

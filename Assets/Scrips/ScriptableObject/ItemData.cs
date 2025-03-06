@@ -31,5 +31,8 @@ public class ItemData : ScriptableObject
     public ItemDataConsumable oilfill;
 
     [Header("Handleable")]
-    public GameObject HandlePrefab;
+    public GameObject handlePrefab;
+
+    [Header("Ghost")]
+    public GameObject ghostPrefab;
 }
