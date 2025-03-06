@@ -28,7 +28,7 @@ public class ItemData : ScriptableObject
 
 
     [Header("Consumable")]
-    public ItemDataConsumable[] consumable;
+    public ItemDataConsumable oilfill;
 
     [Header("Handleable")]
     public GameObject HandlePrefab;

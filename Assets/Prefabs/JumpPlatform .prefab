@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f09093297e13ca44bf9c4b3c7fdcaa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: cfcf04212fb296148a2f2dabf9967b41, type: 2}
   jumpPower: 150
 --- !u!65 &-5738065270948769817
 BoxCollider:
