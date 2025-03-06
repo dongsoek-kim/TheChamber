@@ -8,7 +8,7 @@ using UnityEngine;
 public enum ItemType
 {
     Handleable,
-    Useable,
+    KeyCard
 }
 
 [CreateAssetMenu(fileName = "item", menuName = "New item")]
@@ -21,8 +21,8 @@ public class ItemData : ScriptableObject
     public GameObject dropPrefab;
 
 
-    [Header("Useable")]
-    public GameObject itemPrefab;
+    [Header("KeyCard")]
+    public Keycard index;
 
     [Header("Handleable")]
     public GameObject handlePrefab;

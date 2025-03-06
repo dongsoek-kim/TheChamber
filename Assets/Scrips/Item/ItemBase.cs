@@ -24,9 +24,10 @@ public abstract class KeyCard : MonoBehaviour, IItem
 {
     public ItemData data;
 
-    public int index;
+    public Keycard index;
     public void PickUp()
     {
+        CharacterManager.Instance.Player.key[(int)index] = true;
+        Destroy(gameObject);
     }
-    public abstract void Use(int index);
 }

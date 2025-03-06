@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 4243382826845945546}
   - component: {fileID: 6033144813995938759}
   - component: {fileID: 7693026076806725257}
-  m_Layer: 0
+  - component: {fileID: -7708281942453121298}
+  m_Layer: 9
   m_Name: RedCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-7708281942453121298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4347935481514996444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2836e1d51133f2b49a311ab178655ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 3c0a560845101354398e7d27e03572d7, type: 2}
+  index: 2

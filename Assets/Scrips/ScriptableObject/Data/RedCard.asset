@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6b2b2de93400843957543c3f221955, type: 3}
+  m_Name: RedCard
+  m_EditorClassIdentifier: 
+  displayName: "\uB808\uB4DC\uD0A4\uCE74\uB4DC"
+  description: "\uB3C4\uC804\uB9F5\uC744 \uC624\uD508\uD560 \uB54C \uC0AC\uC6A9"
+  type: 1
+  dropPrefab: {fileID: 4347935481514996444, guid: b25fb8216bb588e4b9417947ee2f5527,
+    type: 3}
+  keycard: {fileID: 0}
+  handlePrefab: {fileID: 0}
+  ghostPrefab: {fileID: 0}

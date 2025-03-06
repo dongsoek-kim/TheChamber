@@ -114,7 +114,14 @@ public class PlayerController : MonoBehaviour
         Debug.Log("°øÁßÀÓ");
         return false;
     }
-
+    public void OnOption(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+        {
+            option?.Invoke();
+            ToggleCursor();
+        }
+    }
     void ToggleCursor()
     {
         bool toggle = Cursor.lockState == CursorLockMode.Locked;

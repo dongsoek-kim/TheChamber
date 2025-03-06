@@ -10,10 +10,9 @@ public class PickUp : MonoBehaviour
     public float checkRate = 0.05f;
     private float lastCheckTime;
     public float maxCheckDistance;
-    public LayerMask layerMask;
 
     public GameObject curInteractGameObject;
-    private HandleItem curInteractable;
+    private IItem curInteractable;
 
     new private Camera camera;
 
@@ -33,12 +32,12 @@ public class PickUp : MonoBehaviour
             Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, maxCheckDistance, layerMask))
+            if (Physics.Raycast(ray, out hit, maxCheckDistance))
             {
                 if (hit.collider.gameObject != curInteractGameObject)
                 {
                     curInteractGameObject = hit.collider.gameObject;
-                    curInteractable = hit.collider.GetComponent<HandleItem>();
+                    curInteractable = hit.collider.GetComponent<IItem>();
                 }
             }
             else
@@ -51,20 +50,27 @@ public class PickUp : MonoBehaviour
 
     public void OnInteractInput(InputAction.CallbackContext context)
     {
-        Debug.Log("상호작용 눌럿다");
-        if (context.phase == InputActionPhase.Started && curInteractable != null && !CharacterManager.Instance.Player.hand.NowEuqipped())
+        if (curInteractable == null)
         {
-            Debug.Log("손이 비었다");
-            curInteractable.PickUp();
+            Debug.Log("curInteractable이 null이라 상호작용할 오브젝트가 없음");
+            return;
+        }
+
+        GameObject targetObject = curInteractGameObject; 
+        string targetLayer = LayerMask.LayerToName(targetObject.layer);
+        if (context.phase == InputActionPhase.Started && curInteractable != null && targetLayer == "Handel")
+        {
+            if (!CharacterManager.Instance.Player.hand.NowEuqipped())
+                curInteractable.PickUp();
             CharacterManager.Instance.Player.hand.Equip(CharacterManager.Instance.Player.itemData);
             curInteractGameObject = null;
             curInteractable = null;
         }
-        else if (CharacterManager.Instance.Player.hand.NowEuqipped())
-            Debug.Log("손에 물건있다");
-        else
+        else if (context.phase == InputActionPhase.Started && curInteractable != null && targetLayer == "KeyCard")
         {
-            Debug.Log("허공이닫");
+            curInteractable.PickUp();
+            curInteractGameObject = null;
+            curInteractable = null;
         }
     }
 }

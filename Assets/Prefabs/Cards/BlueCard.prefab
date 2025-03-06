@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 7660562036865546714}
   - component: {fileID: 4288909793050172315}
   - component: {fileID: 2624585249025876830}
-  m_Layer: 0
+  - component: {fileID: -2405881067652568106}
+  - component: {fileID: -3027305816745389054}
+  m_Layer: 9
   m_Name: BlueCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,3 +85,38 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-2405881067652568106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395938123950230901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2836e1d51133f2b49a311ab178655ea1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: e53cf701e0e4ff4468e6bc7424d4a66c, type: 2}
+  index: 0
+--- !u!65 &-3027305816745389054
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395938123950230901}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

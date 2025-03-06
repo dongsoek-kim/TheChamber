@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da6b2b2de93400843957543c3f221955, type: 3}
+  m_Name: BlueCard
+  m_EditorClassIdentifier: 
+  displayName: "\uBE14\uB8E8\uD0A4\uCE74\uB4DC"
+  description: "\uC810\uD504\uB9F5\uC744 \uC624\uD508\uD560 \uB54C \uC0AC\uC6A9"
+  type: 1
+  dropPrefab: {fileID: 395938123950230901, guid: 912840190a045fc40a1b09ab5e212550,
+    type: 3}
+  handlePrefab: {fileID: 0}
+  ghostPrefab: {fileID: 0}
