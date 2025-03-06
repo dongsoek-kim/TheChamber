@@ -23,6 +23,7 @@ public abstract class HandleItem : MonoBehaviour, IItem
 public abstract class UsableItem : MonoBehaviour, IItem
 {
     public ItemData data;
+
     public float amount;
     public void PickUp()
     {
