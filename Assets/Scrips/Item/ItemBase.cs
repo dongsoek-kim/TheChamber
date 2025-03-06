@@ -5,27 +5,28 @@ using UnityEngine;
 public interface IItem
 {
     void PickUp();
-    void Drop();
 }
 
 public abstract class HandleItem : MonoBehaviour, IItem
 {
+    public ItemData data;
+
+
     public void PickUp()
     {
-        //집어서 손에 들기
-    }
-
-    public void Drop()
-    {
-        //눈앞에 내려놓기
+        Debug.Log("플레이어에게 정보전달");
+        CharacterManager.Instance.Player.itemData = data;
+        Destroy(gameObject);
     }
 }
 
 public abstract class UsableItem : MonoBehaviour, IItem
 {
+    public ItemData data;
+    public float amount;
     public void PickUp()
     {
+        Use(amount);
     }
-    public void Drop() { }//사용안함
     public abstract void Use(float value);
 }

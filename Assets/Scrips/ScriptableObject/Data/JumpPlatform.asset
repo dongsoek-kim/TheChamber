@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6b2b2de93400843957543c3f221955, type: 3}
   m_Name: JumpPlatform
   m_EditorClassIdentifier: 
-  displayName: 
-  description: 
+  displayName: "\uC810\uD504 \uD50C\uB81B\uD3FC"
+  description: "\uC62C\uB77C\uAC00\uBA74 \uC810\uD504\uAC00 \uB6F0\uC5B4\uC9C4\uB2E4."
   type: 0
-  dropPrefab: {fileID: 0}
-  consumable: []
-  HandlePrefab: {fileID: 0}
+  dropPrefab: {fileID: 9003171219661413333, guid: d1d8dc873156cc24eba79687ee1486cf,
+    type: 3}
+  oilfill:
+    value: 0
+  HandlePrefab: {fileID: 9014154092674790642, guid: 5c569df58c350fc42b0414605ef2c1eb,
+    type: 3}

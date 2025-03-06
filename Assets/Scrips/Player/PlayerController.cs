@@ -36,8 +36,6 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         Move();
-
-
     }
 
     private void LateUpdate()
@@ -89,6 +87,9 @@ public class PlayerController : MonoBehaviour
             _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
         }
     }
+
+
+
 
     public void JumpPlatform(float jumpPower)
     {    

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class JumpPlatform : HandleItem
 {
-    public ItemData data;
-
     public float jumpPower;
     private void OnCollisionEnter(Collision collision)
     {
