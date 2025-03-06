@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
     private static CharacterManager _instance;
-
+    public event Action<int> getCard;
     public static CharacterManager Instance
     {
         get
@@ -38,6 +39,13 @@ public class CharacterManager : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    public void GetCard(Keycard index)
+    {
+        Debug.Log(index.ToString());
+        Player.key[(int)index] = true;
+        getCard?.Invoke((int)index);
     }
 }
 

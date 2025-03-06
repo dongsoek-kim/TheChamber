@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -52,7 +48,7 @@ public class PickUp : MonoBehaviour
     {
         if (curInteractable == null)
         {
-            Debug.Log("curInteractable이 null이라 상호작용할 오브젝트가 없음");
+            Debug.Log("허공임");
             return;
         }
 
@@ -60,6 +56,7 @@ public class PickUp : MonoBehaviour
         string targetLayer = LayerMask.LayerToName(targetObject.layer);
         if (context.phase == InputActionPhase.Started && curInteractable != null && targetLayer == "Handel")
         {
+            Debug.Log("발판임");
             if (!CharacterManager.Instance.Player.hand.NowEuqipped())
                 curInteractable.PickUp();
             CharacterManager.Instance.Player.hand.Equip(CharacterManager.Instance.Player.itemData);
@@ -68,9 +65,11 @@ public class PickUp : MonoBehaviour
         }
         else if (context.phase == InputActionPhase.Started && curInteractable != null && targetLayer == "KeyCard")
         {
+            Debug.Log("카드");
             curInteractable.PickUp();
             curInteractGameObject = null;
             curInteractable = null;
         }
+       
     }
 }

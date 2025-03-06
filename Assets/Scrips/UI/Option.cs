@@ -1,20 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.InputSystem.XR;
+using UnityEngine.UI;
 
 public class Option : MonoBehaviour
 {
 
     private PlayerController controller;
-
     public GameObject optionWindow;
+    public Image[] cardImage;
     void Start()
     {
 
         controller = CharacterManager.Instance.Player.controller;
         optionWindow.SetActive(false);
         controller.option += Toggel;
+        CharacterManager.Instance.getCard += UpdataKeycard;
     }
 
     // Update is called once per frame
@@ -39,4 +42,11 @@ public class Option : MonoBehaviour
     {
         return optionWindow.activeInHierarchy;
     }
+
+    public void UpdataKeycard(int index)
+    {
+        Debug.Log(index);
+        cardImage[index].gameObject.SetActive(true);
+    }
+
 }

@@ -107,11 +107,8 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(ray.origin,ray.direction*0.1f, Color.red, 1f);
         if (Physics.Raycast(ray, 0.1f, groundLayerMask))
         {
-            Debug.Log("땅에 붙음");
             return true;
         }
-
-        Debug.Log("공중임");
         return false;
     }
     public void OnOption(InputAction.CallbackContext context)

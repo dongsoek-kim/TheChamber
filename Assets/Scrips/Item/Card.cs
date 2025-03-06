@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Card : KeyCard
 {
-  
     void Start()
     {
         index = data.index;

@@ -17,5 +17,6 @@ MonoBehaviour:
   type: 1
   dropPrefab: {fileID: 1960898913354742976, guid: 7972e30c59fb94b488bacd719a966c50,
     type: 3}
+  index: 1
   handlePrefab: {fileID: 0}
   ghostPrefab: {fileID: 0}

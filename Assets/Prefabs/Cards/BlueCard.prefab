@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4288909793050172315}
   - component: {fileID: 2624585249025876830}
   - component: {fileID: -2405881067652568106}
-  - component: {fileID: -3027305816745389054}
+  - component: {fileID: 7630018480060362240}
   m_Layer: 9
   m_Name: BlueCard
   m_TagString: Untagged
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: e53cf701e0e4ff4468e6bc7424d4a66c, type: 2}
   index: 0
---- !u!65 &-3027305816745389054
+--- !u!65 &7630018480060362240
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -9,6 +9,8 @@ public class Arrange : MonoBehaviour
     public float arrangeDistance;
     private GameObject ghostObject;
     public Transform displaytran;
+    public float checkRate = 0.05f;
+    private float lastCheckTime;
     void Start()
     {
         camera = Camera.main;
@@ -17,7 +19,11 @@ public class Arrange : MonoBehaviour
     private void Update()
     {
         if (CharacterManager.Instance.Player.itemData != null)
-            Ghosting();
+            if (Time.time - lastCheckTime > checkRate)
+            {
+                lastCheckTime = Time.time;
+                Ghosting();
+            }
     }
     public void OnArrange(InputAction.CallbackContext context)
     {
