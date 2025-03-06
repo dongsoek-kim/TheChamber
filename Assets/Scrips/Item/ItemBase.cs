@@ -20,14 +20,13 @@ public abstract class HandleItem : MonoBehaviour, IItem
     }
 }
 
-public abstract class UsableItem : MonoBehaviour, IItem
+public abstract class KeyCard : MonoBehaviour, IItem
 {
     public ItemData data;
 
-    public float amount;
+    public int index;
     public void PickUp()
     {
-        Use(amount);
     }
-    public abstract void Use(float value);
+    public abstract void Use(int index);
 }

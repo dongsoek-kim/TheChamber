@@ -8,13 +8,7 @@ using UnityEngine;
 public enum ItemType
 {
     Handleable,
-    Consumable,
-}
-
-[Serializable]
-public class ItemDataConsumable
-{
-    public float value;
+    Useable,
 }
 
 [CreateAssetMenu(fileName = "item", menuName = "New item")]
@@ -27,8 +21,8 @@ public class ItemData : ScriptableObject
     public GameObject dropPrefab;
 
 
-    [Header("Consumable")]
-    public ItemDataConsumable oilfill;
+    [Header("Useable")]
+    public GameObject itemPrefab;
 
     [Header("Handleable")]
     public GameObject handlePrefab;
