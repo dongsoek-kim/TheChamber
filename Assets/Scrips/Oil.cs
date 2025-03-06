@@ -34,7 +34,6 @@ public class Oil : MonoBehaviour
 
     public void Subtract(float value)
     {
-        Debug.Log("Ω««‡¡ﬂ");
         curValue = Mathf.Max(curValue - value, 0);
     }
 }

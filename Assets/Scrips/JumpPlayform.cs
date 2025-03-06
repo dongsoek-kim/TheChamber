@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class JumpPlayform : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    public float jumpPower;
+    private void OnCollisionEnter(Collision collision)
     {
-        
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("б╚га");
+            CharacterManager.Instance.Player.controller.JumpPlatform(jumpPower);
+
+        }
     }
 }

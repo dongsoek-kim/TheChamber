@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
     private Vector2 mouseDelta;
     public bool canLook = true;
     private Rigidbody _rigidbody;
+
+
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -87,6 +90,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void JumpPlatform(float jumpPower)
+    {    
+            _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+    }
     bool IsGrounded()
     {
 
