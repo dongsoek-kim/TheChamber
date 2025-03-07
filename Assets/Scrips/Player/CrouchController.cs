@@ -8,7 +8,7 @@ public class CrouchController : MonoBehaviour
 {
     public Player player;
     private Animator animator;
-    public float crouchMoveDuration = 3f;
+    public float crouchMoveDuration = 4f;
     private Vector3 crouchTargetPosition;
     private bool isAbleToCrouch = false;
     void Start()
@@ -46,11 +46,11 @@ public class CrouchController : MonoBehaviour
             if (isAbleToCrouch)
             {
                 isAbleToCrouch = false;
+                animator.SetTrigger("isCrouch"); 
                 StartCoroutine(MovePlayerSmooth(crouchTargetPosition, crouchMoveDuration));
             }
         }
     }
-
     private IEnumerator MovePlayerSmooth(Vector3 target, float duration)
     {
         Vector3 startPos = player.transform.position;
