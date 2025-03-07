@@ -29,8 +29,8 @@ public class Door : MonoBehaviour
 
     private IEnumerator OpenAndCloseDoor()
     {
-        Vector3 leftDoorTarget = leftDoorOriginalPos + new Vector3(-3, 0, 0); 
-        Vector3 rightDoorTarget = rightDoorOriginalPos + new Vector3(3, 0, 0); 
+        Vector3 leftDoorTarget = leftDoorOriginalPos + new Vector3(-1.5f, 0, 0); 
+        Vector3 rightDoorTarget = rightDoorOriginalPos + new Vector3(1.5f, 0, 0); 
 
         float elapsedTime = 0f;
         float duration = 1f;

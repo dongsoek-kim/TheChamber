@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     public Action option;
     private Rigidbody _rigidbody;
-
+    private bool isOnPlatform = false;
 
 
     private void Awake()
@@ -92,8 +92,27 @@ public class PlayerController : MonoBehaviour
     }
 
     public void JumpPlatform(float jumpPower)
-    {    
+    {
+        if (!isOnPlatform)  
+        {
             _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
+            isOnPlatform = true;
+            Invoke("OnPlatformExit", 0.5f);
+        }
+    }
+
+    public void OnPlatformExit()  
+    {
+        isOnPlatform = false; 
+    }
+
+    public void AccelerationPlatform()
+    {
+        moveSpeed = 5;
+    }
+    public void OnAccelerationPlatformExit()
+    {
+        moveSpeed = 3;
     }
 
     bool IsGrounded()

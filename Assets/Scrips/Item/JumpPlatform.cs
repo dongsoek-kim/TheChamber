@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class JumpPlatform : HandleItem
 {
-    public float jumpPower;
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("б╚га");
-            CharacterManager.Instance.Player.controller.JumpPlatform(jumpPower);
+            CharacterManager.Instance.Player.controller.JumpPlatform(data.jumpPower);
 
         }
     }

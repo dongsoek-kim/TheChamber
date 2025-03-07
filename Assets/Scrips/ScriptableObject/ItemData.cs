@@ -26,6 +26,7 @@ public class ItemData : ScriptableObject
 
     [Header("Handleable")]
     public GameObject handlePrefab;
+    public float jumpPower;
 
     [Header("Ghost")]
     public GameObject ghostPrefab;
