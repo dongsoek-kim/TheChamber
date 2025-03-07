@@ -59,7 +59,7 @@ public class Arrange : MonoBehaviour
                     // 미리보기 아이템을 충돌 위치에 업데이트
                     ghostObject.transform.position = new Vector3(
                         Mathf.RoundToInt(hit.point.x),  // X좌표를 정수로 반올림
-                        Mathf.RoundToInt(hit.point.y),  // Y좌표를 정수로 반올림
+                        Mathf.RoundToInt(hit.point.y-1f),  // Y좌표를 정수로 반올림
                         Mathf.RoundToInt(hit.point.z)   // Z좌표를 정수로 반올림
                     );
                     ghostObject.SetActive(true);

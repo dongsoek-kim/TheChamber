@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da6b2b2de93400843957543c3f221955, type: 3}
-  m_Name: RedCard
+  m_Name: SuperJumpPlatform
   m_EditorClassIdentifier: 
-  displayName: "\uB808\uB4DC\uD0A4\uCE74\uB4DC"
-  description: "\uB3C4\uC804\uB9F5\uC744 \uC624\uD508\uD560 \uB54C \uC0AC\uC6A9"
-  type: 1
-  dropPrefab: {fileID: 4347935481514996444, guid: b25fb8216bb588e4b9417947ee2f5527,
+  displayName: "\uC288\uD37C \uC810\uD504 \uD50C\uB81B\uD3FC"
+  description: "\uB354 \uB192\uC774 \uB6F0\uC5B4\uC9C4\uB2E4"
+  type: 0
+  dropPrefab: {fileID: 9029034189919656232, guid: 7184a3a26e7fc5b499224592c6a3f094,
     type: 3}
-  index: 2
+  index: 0
   handlePrefab: {fileID: 0}
   jumpPower: 300
   ghostPrefab: {fileID: 0}
