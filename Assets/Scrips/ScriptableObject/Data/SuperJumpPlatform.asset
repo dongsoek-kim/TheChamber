@@ -18,6 +18,8 @@ MonoBehaviour:
   dropPrefab: {fileID: 9029034189919656232, guid: 7184a3a26e7fc5b499224592c6a3f094,
     type: 3}
   index: 0
-  handlePrefab: {fileID: 0}
+  handlePrefab: {fileID: 9014154092674790642, guid: e48a2f31446ec6140b776141fd4a40ac,
+    type: 3}
   jumpPower: 300
-  ghostPrefab: {fileID: 0}
+  ghostPrefab: {fileID: 7910805091205618236, guid: fe2427f038b511340a7309e675febf15,
+    type: 3}
