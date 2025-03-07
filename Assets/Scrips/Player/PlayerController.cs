@@ -207,7 +207,6 @@ public class PlayerController : MonoBehaviour
         Camera camera;
         camera= Camera.main;
         float maxCheckDistance = 1;
-        GameObject curInteractGameObject;
         if (context.phase == InputActionPhase.Started)
         {
             Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
