@@ -9,13 +9,16 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Moverment")]
     public float moveSpeed;
+    public float walkSpeed;
     public float runSpeed;
+    public float backSpeed;
     private Vector2 curMovementInput;
     public float jumpPower;
     public LayerMask groundLayerMask;
     public float accelerationTime = 0.5f;
     private bool isRunning = false;
     private float currentSpeed;
+    [SerializeField]private bool isBackward = false;
 
     [Header("Look")]
     public Transform cameraContainer;
@@ -26,17 +29,21 @@ public class PlayerController : MonoBehaviour
     private Vector2 mouseDelta;
     public bool canLook = true;
 
+    [Header("Animation")]
+    public Animator animator;
+
     public Action option;
     public Action runStart;
     public Action runEnd;
     private Rigidbody _rigidbody;
     private bool isOnPlatform = false;
 
-
+    
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Start()
@@ -80,26 +87,56 @@ public class PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
+            moveSpeed = walkSpeed;
+            animator.SetBool("isMoving", true);
+            
             curMovementInput = context.ReadValue<Vector2>();
+
+
+            if (curMovementInput.y < 0)
+            {
+                moveSpeed = backSpeed;
+                isBackward=true;
+                animator.SetBool("isBackWard", true);
+            }
+            else
+            {
+                moveSpeed = walkSpeed;
+                isBackward = false;
+                animator.SetBool("isBackWard", false);
+            }
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
+            // 이동을 멈추면 isMoving을 false로 설정
+            animator.SetBool("isMoving", false);
+
+            // 뒤로 이동하지 않는 상태로 설정
+            animator.SetBool("isBackWard", false);
+
+            // 입력 초기화
             curMovementInput = Vector2.zero;
         }
     }
 
     public void OnRun(InputAction.CallbackContext context)
     {
+        if (isBackward)
+        {
+            return;
+        }
         if (context.phase == InputActionPhase.Performed)
         {
+            animator.SetBool("isRun", true);
             isRunning = true;
             runStart?.Invoke();
         }
         else if (context.phase == InputActionPhase.Canceled)
         {
-            Debug.Log("달리기땟다");
+            animator.SetBool("isRun", false);
             isRunning = false;
             runEnd?.Invoke();
+
         }
     }
     public void OnLook(InputAction.CallbackContext context)
@@ -111,6 +148,7 @@ public class PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started && IsGrounded())
         {
+             animator.SetTrigger("isJumping");
             _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
         }
     }
@@ -119,6 +157,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!isOnPlatform)  
         {
+            animator.SetTrigger("isJumping");
             _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
             isOnPlatform = true;
             Invoke("OnPlatformExit", 0.5f);

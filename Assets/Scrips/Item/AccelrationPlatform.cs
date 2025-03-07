@@ -18,14 +18,20 @@ public class AccelrationPlatform : MonoBehaviour
             Debug.Log("플레이어 올라탐");
             playerController.AccelerationPlatform();
         }
+        else if (collision.gameObject.CompareTag("Ground"))
+            if (collision.gameObject.CompareTag("Player"))
+            {
+                Debug.Log("플레이어 내려감");
+                playerController.OnAccelerationPlatformExit();
+            }
     }
 
-    void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("플레이어 내려감");
-            playerController.OnAccelerationPlatformExit();
-        }
-    }
+    //void OnCollisionExit(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        Debug.Log("플레이어 내려감");
+    //        playerController.OnAccelerationPlatformExit();
+    //    }
+    //}
 }
