@@ -8,12 +8,18 @@ public class Oil : MonoBehaviour
     public float maxValue;
     public float passiveValue;
     public Image uiBar;
+    public Image Runstate;
 
+    private PlayerController playerController;
     private void Awake()
     {
     }
     private void Start()
     {
+        playerController = CharacterManager.Instance.Player.controller;
+        playerController.runStart += RunStart;
+        playerController.runEnd += RunEnd;
+
         curValue = startValue;
     }
 
@@ -35,5 +41,16 @@ public class Oil : MonoBehaviour
     public void Subtract(float value)
     {
         curValue = Mathf.Max(curValue - value, 0);
+    }
+
+    public void RunStart()
+    {
+        passiveValue *= 2;
+        Runstate.gameObject.SetActive(true);
+    }
+    public void RunEnd()
+    {
+        passiveValue /= 2;
+        Runstate.gameObject.SetActive(false);
     }
 }

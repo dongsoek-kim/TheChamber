@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
+using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerController : MonoBehaviour
 {
     [Header("Moverment")]
     public float moveSpeed;
+    public float runSpeed;
     private Vector2 curMovementInput;
     public float jumpPower;
     public LayerMask groundLayerMask;
+    public float accelerationTime = 0.5f;
+    private bool isRunning = false;
+    private float currentSpeed;
 
     [Header("Look")]
     public Transform cameraContainer;
@@ -22,8 +27,11 @@ public class PlayerController : MonoBehaviour
     public bool canLook = true;
 
     public Action option;
+    public Action runStart;
+    public Action runEnd;
     private Rigidbody _rigidbody;
     private bool isOnPlatform = false;
+
 
 
     private void Awake()
@@ -38,6 +46,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        float targetSpeed = isRunning ? runSpeed : moveSpeed;
+        currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, Time.deltaTime / accelerationTime);
         Move();
     }
 
@@ -52,7 +62,7 @@ public class PlayerController : MonoBehaviour
     void Move()
     {
         Vector3 dir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
-        dir *= moveSpeed;
+        dir *= currentSpeed;
         dir.y = _rigidbody.velocity.y;
 
         _rigidbody.velocity = dir;
@@ -78,6 +88,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnRun(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            isRunning = true;
+            runStart?.Invoke();
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            Debug.Log("´Þ¸®±â¶­´Ù");
+            isRunning = false;
+            runEnd?.Invoke();
+        }
+    }
     public void OnLook(InputAction.CallbackContext context)
     {
         mouseDelta = context.ReadValue<Vector2>();
@@ -108,11 +132,13 @@ public class PlayerController : MonoBehaviour
 
     public void AccelerationPlatform()
     {
-        moveSpeed = 5;
+        moveSpeed = 7;
+        runSpeed = 10;
     }
     public void OnAccelerationPlatformExit()
     {
-        moveSpeed = 3;
+        moveSpeed = 2;
+        runSpeed = 5;
     }
 
     bool IsGrounded()
