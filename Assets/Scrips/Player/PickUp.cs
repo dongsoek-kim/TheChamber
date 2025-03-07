@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -35,11 +36,11 @@ public class PickUp : MonoBehaviour
                     curInteractGameObject = hit.collider.gameObject;
                     curInteractable = hit.collider.GetComponent<IItem>();
                 }
-            }
-            else
-            {
-                curInteractGameObject = null;
-                curInteractable = null;
+                else
+                {
+                    curInteractGameObject = null;
+                    curInteractable = null;
+                }
             }
         }
     }
@@ -69,4 +70,5 @@ public class PickUp : MonoBehaviour
         }
        
     }
+
 }

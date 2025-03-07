@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class CreatePhysicMaterial : MonoBehaviour
+public class PhysicMaterial : MonoBehaviour
 {
     void Start()
     {
-        PhysicMaterial lowFrictionMaterial = new PhysicMaterial("LowFriction");
+        UnityEngine.PhysicMaterial lowFrictionMaterial = new UnityEngine.PhysicMaterial("LowFriction");
 
         lowFrictionMaterial.dynamicFriction = 0f;
         lowFrictionMaterial.staticFriction = 0f;

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public interface IItem
@@ -7,6 +8,10 @@ public interface IItem
     void PickUp();
 }
 
+public interface IDescriptionItem
+{
+    public string GetInteractPrompt();
+}
 public abstract class HandleItem : MonoBehaviour, IItem
 {
     public ItemData data;
@@ -31,3 +36,4 @@ public abstract class KeyCard : MonoBehaviour, IItem
         Destroy(gameObject);
     }
 }
+
