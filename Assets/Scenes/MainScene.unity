@@ -9943,7 +9943,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1611475622
 Transform:
   m_ObjectHideFlags: 0
@@ -11500,7 +11500,7 @@ Transform:
   m_GameObject: {fileID: 4187851333934889361}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.529, y: 0, z: 1.5}
+  m_LocalPosition: {x: -0.556, y: 0, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12432,7 +12432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkRate: 0.05
-  maxCheckDistance: 3
+  maxCheckDistance: 20
   curInteractGameObject: {fileID: 0}
 --- !u!4 &2559285840484662497
 Transform:
@@ -14111,7 +14111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5901452235371067274
 Transform:
   m_ObjectHideFlags: 0
@@ -15443,7 +15443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkRate: 0.05
-  maxCheckDistance: 3
+  maxCheckDistance: 20
   curInteractGameObject: {fileID: 0}
   promptText: {fileID: 972777863}
 --- !u!1 &7955220041796376339

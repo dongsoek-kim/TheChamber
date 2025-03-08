@@ -204,9 +204,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
+        Debug.Log("E눌럿다");
         Camera camera;
         camera= Camera.main;
-        float maxCheckDistance = 1;
+        float maxCheckDistance = 20;
         if (context.phase == InputActionPhase.Started)
         {
             Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
@@ -216,6 +217,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (hit.collider.gameObject.CompareTag("Access"))
                 {
+                    Debug.Log("열어라");
                     Door door = hit.collider.transform.parent.GetComponent<Door>();
                     door.DoorOpen();
                 }
