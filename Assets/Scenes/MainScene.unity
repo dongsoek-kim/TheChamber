@@ -3613,7 +3613,7 @@ PrefabInstance:
     - target: {fileID: 7032684834548665978, guid: f00d8f5917d95ce4ead99b42cdab4453,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7032684834548665978, guid: f00d8f5917d95ce4ead99b42cdab4453,
         type: 3}
@@ -9943,7 +9943,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1611475622
 Transform:
   m_ObjectHideFlags: 0
@@ -13426,7 +13426,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.01
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -14111,7 +14111,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5901452235371067274
 Transform:
   m_ObjectHideFlags: 0
