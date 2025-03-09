@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 62841614}
   - component: {fileID: 62841615}
   m_Layer: 0
-  m_Name: BlueDoor
+  m_Name: GreenDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac004f50e0abc24695dc7b258d0e625, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Keycard: 0
+  Keycard: 1
   leftDoor: {fileID: 818986842}
   rightDoor: {fileID: 81809309}
 --- !u!1001 &73238836
@@ -1194,7 +1194,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f4ce0ad7f2a28f042873faab44f72277, type: 2}
+  - {fileID: 2100000, guid: e8fab895fb2f4b042b2ee8a121dd659b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2318,7 +2318,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e8fab895fb2f4b042b2ee8a121dd659b, type: 2}
+  - {fileID: 2100000, guid: a0bfa4f19960753449096910ca4e7197, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3026,7 +3026,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f4ce0ad7f2a28f042873faab44f72277, type: 2}
+  - {fileID: 2100000, guid: e8fab895fb2f4b042b2ee8a121dd659b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3735,7 +3735,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e8fab895fb2f4b042b2ee8a121dd659b, type: 2}
+  - {fileID: 2100000, guid: a0bfa4f19960753449096910ca4e7197, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9813,7 +9813,7 @@ GameObject:
   - component: {fileID: 1474645678}
   - component: {fileID: 1474645679}
   m_Layer: 0
-  m_Name: GreenDoor
+  m_Name: RedDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9849,7 +9849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eac004f50e0abc24695dc7b258d0e625, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Keycard: 1
+  Keycard: 2
   leftDoor: {fileID: 1125192063}
   rightDoor: {fileID: 1828675408}
 --- !u!4 &1542158290 stripped
