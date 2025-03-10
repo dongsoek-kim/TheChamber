@@ -35,7 +35,7 @@ public class Portal : MonoBehaviour
         float targetStartSpeed = 3f;
         float duration = 2f; 
         float elapsedTime = 0f;
-
+        player.controller.Dontmove(2);
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;

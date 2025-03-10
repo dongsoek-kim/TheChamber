@@ -17,9 +17,11 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayerMask;
     public float accelerationTime = 0.5f;
     private bool isRunning = false;
-    private float currentSpeed;
-    [SerializeField]private bool isBackward = false;
-
+    private bool isMoving= false;
+    [SerializeField] private float currentSpeed;
+    [SerializeField] private bool isBackward = false;
+    private Coroutine waitUntilGroundedCoroutine;
+    public bool canMove=true;
     [Header("Look")]
     public Transform cameraContainer;
     public float minXLook;
@@ -50,9 +52,12 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float targetSpeed = isRunning ? runSpeed : moveSpeed;
-        currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, Time.deltaTime / accelerationTime);
-        Move();
+        if (canMove)
+        {
+            float targetSpeed = isMoving ? (isRunning ? runSpeed : moveSpeed) : 0f;
+            currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, Time.deltaTime / accelerationTime);
+            Move();
+        }
     }
 
     private void LateUpdate()
@@ -86,14 +91,14 @@ public class PlayerController : MonoBehaviour
         {
             moveSpeed = walkSpeed;
             animator.SetBool("isMoving", true);
-            
+            isMoving = true;
             curMovementInput = context.ReadValue<Vector2>();
 
 
             if (curMovementInput.y < 0)
             {
                 moveSpeed = backSpeed;
-                isBackward=true;
+                isBackward = true;
                 animator.SetBool("isBackWard", true);
             }
             else
@@ -110,7 +115,7 @@ public class PlayerController : MonoBehaviour
 
             // 뒤로 이동하지 않는 상태로 설정
             animator.SetBool("isBackWard", false);
-
+            isMoving = false;
             // 입력 초기화
             curMovementInput = Vector2.zero;
         }
@@ -145,14 +150,14 @@ public class PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started && IsGrounded())
         {
-             animator.SetTrigger("isJumping");
+            animator.SetTrigger("isJumping");
             _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
         }
     }
 
     public void JumpPlatform(float jumpPower)
     {
-        if (!isOnPlatform)  
+        if (!isOnPlatform)
         {
             animator.SetTrigger("isJumping");
             _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
@@ -161,22 +166,36 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnPlatformExit()  
+    public void OnPlatformExit()
     {
-        isOnPlatform = false; 
+        isOnPlatform = false;
     }
 
     public void AccelerationPlatform()
     {
-        moveSpeed = 7;
-        runSpeed = 10;
+        if (waitUntilGroundedCoroutine != null)
+        {
+            StopCoroutine(waitUntilGroundedCoroutine);
+        }
+        moveSpeed = 5;
+        runSpeed = 15;
     }
     public void OnAccelerationPlatformExit()
     {
+        waitUntilGroundedCoroutine=StartCoroutine(WaitUntilGrounded());
+    }
+    private IEnumerator WaitUntilGrounded()
+    {
+        while (!IsGrounded())
+        {
+            yield return null;
+        }
         moveSpeed = 2;
         runSpeed = 5;
-    }
+        currentSpeed = runSpeed;
 
+        waitUntilGroundedCoroutine = null;
+    }
     bool IsGrounded()
     {
 
@@ -221,7 +240,18 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
+    public void Dontmove(float time)
+    {
+        StartCoroutine(DontMoveCoroutine(time));
+    }
+    private IEnumerator DontMoveCoroutine(float time)
+    {
+        canMove = false;
+        canLook = false;
+        yield return new WaitForSeconds(time);
+        canMove = true;
+        canLook = true;
+    }
     void ToggleCursor()
     {
         bool toggle = Cursor.lockState == CursorLockMode.Locked;

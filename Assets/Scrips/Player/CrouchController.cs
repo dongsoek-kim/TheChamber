@@ -11,6 +11,8 @@ public class CrouchController : MonoBehaviour
     public float crouchMoveDuration = 4f;
     private Vector3 crouchTargetPosition;
     private bool isAbleToCrouch = false;
+
+
     void Start()
     {
         player = CharacterManager.Instance.Player;
@@ -25,7 +27,6 @@ public class CrouchController : MonoBehaviour
                 float targetY = other.bounds.max.y;
                 isAbleToCrouch = true;
                 crouchTargetPosition = new Vector3(transform.position.x, targetY, transform.position.z);
-                Debug.Log(crouchTargetPosition);
             }
         }
     }
@@ -33,14 +34,28 @@ public class CrouchController : MonoBehaviour
     {
         isAbleToCrouch = false;
     }
-
+    /// <summary>
+    /// C를 누르면 기어오르기 실행, 레이를 통해 충돌여부 판정
+    /// </summary>
+    /// <param name="context"></param>
     public void OnCrouch(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
             Vector3 rayOrigin = player.transform.position + new Vector3(0, 2.5f, 0);
-            if (Physics.Raycast(rayOrigin, player.transform.forward, out RaycastHit hit, 0.5f))
+            if (Physics.Raycast(rayOrigin, player.transform.forward, out RaycastHit hitfoward, 0.5f))
             {
+                Debug.Log("앞에 물건있어서 못올라감");
+                return;
+            }
+            else if (Physics.Raycast(rayOrigin, player.transform.up, out RaycastHit hitup, 1f))
+            {
+                Debug.Log("위에 물건 있어서 못올라감");
+                return;
+            }
+            else if (Physics.Raycast(rayOrigin + new Vector3(0, 1f, 0), -player.transform.up, out RaycastHit hitDown, 1f))
+            {
+                Debug.Log("위에 물건 있어서 못올라감");
                 return;
             }
             if (isAbleToCrouch)
