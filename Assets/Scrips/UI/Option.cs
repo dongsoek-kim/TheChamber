@@ -10,6 +10,7 @@ public class Option : MonoBehaviour
 
     private PlayerController controller;
     public GameObject optionWindow;
+    public Button Changeofviewpoint;
     public Image[] cardImage;
     void Start()
     {

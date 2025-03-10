@@ -39,8 +39,6 @@ public class Arrange : MonoBehaviour
 
     void HandleGhostPlacement(RaycastHit hit)
     {
-        Debug.Log("Hit collider tag: " + hit.collider.tag + ", hit.normal: " + hit.normal);
-
         if (hit.collider.CompareTag("Ground") && hit.normal == Vector3.up)
         {
             if (ghostObject == null)
