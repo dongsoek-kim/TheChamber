@@ -26,22 +26,22 @@ public class PickUp : MonoBehaviour
         if (Time.time - lastCheckTime > checkRate)
         {
             lastCheckTime = Time.time;
-            Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
-            RaycastHit hit;
+            RaycastHelper.ProcessRaycast(maxCheckDistance, HandleInteraction);
+        }
+    }
 
-            if (Physics.Raycast(ray, out hit, maxCheckDistance))
-            {
-                if (hit.collider.gameObject != curInteractGameObject)
-                {
-                    curInteractGameObject = hit.collider.gameObject;
-                    curInteractable = hit.collider.GetComponent<IItem>();
-                }
-                else
-                {
-                    curInteractGameObject = null;
-                    curInteractable = null;
-                }
-            }
+    void HandleInteraction(RaycastHit hit)
+    {
+        if (hit.collider.gameObject != curInteractGameObject)
+        {
+            Debug.Log(hit);
+            curInteractGameObject = hit.collider.gameObject;
+            curInteractable = hit.collider.GetComponent<IItem>();
+        }
+        else
+        {
+            curInteractGameObject = null;
+            curInteractable = null;
         }
     }
 

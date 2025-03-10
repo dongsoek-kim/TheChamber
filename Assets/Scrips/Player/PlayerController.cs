@@ -37,9 +37,6 @@ public class PlayerController : MonoBehaviour
     public Action runEnd;
     private Rigidbody _rigidbody;
     private bool isOnPlatform = false;
-
-    
-
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();

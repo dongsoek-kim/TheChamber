@@ -22,9 +22,10 @@ public class Arrange : MonoBehaviour
             if (Time.time - lastCheckTime > checkRate)
             {
                 lastCheckTime = Time.time;
-                Ghosting();
+                RaycastHelper.ProcessRaycast(arrangeDistance, HandleGhostPlacement);
             }
     }
+
     public void OnArrange(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started && CharacterManager.Instance.Player.hand.NowEuqipped())
@@ -35,39 +36,29 @@ public class Arrange : MonoBehaviour
             Destroy(ghostObject);
         }
     }
-    public void Ghosting()
+
+    void HandleGhostPlacement(RaycastHit hit)
     {
+        Debug.Log("Hit collider tag: " + hit.collider.tag + ", hit.normal: " + hit.normal);
 
-        Ray ray = camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-        RaycastHit hit;
-
-        
-        if (Physics.Raycast(ray, out hit, arrangeDistance))
+        if (hit.collider.CompareTag("Ground") && hit.normal == Vector3.up)
         {
-            if (hit.collider.CompareTag("Ground"))
+            if (ghostObject == null)
             {
-                if (hit.normal == Vector3.up)
-                {                              
-                    if (ghostObject == null)
-                    {
-                        ghostObject = Instantiate(CharacterManager.Instance.Player.itemData.ghostPrefab, hit.point, Quaternion.identity);
-                    }
-                    ghostObject.transform.position = new Vector3(
-                        Mathf.RoundToInt(hit.point.x),  
-                        Mathf.RoundToInt(hit.point.y-0.2f), 
-                        Mathf.RoundToInt(hit.point.z) 
-                    );
-                    ghostObject.SetActive(true);
-                }
+                ghostObject = Instantiate(CharacterManager.Instance.Player.itemData.ghostPrefab, hit.point, Quaternion.identity);
             }
+            ghostObject.transform.position = new Vector3(
+                Mathf.RoundToInt(hit.point.x),
+                Mathf.RoundToInt(hit.point.y - 0.2f),
+                Mathf.RoundToInt(hit.point.z)
+            );
+
+                ghostObject.SetActive(true);
+
         }
         else
         {
-            // 레이가 지면에 닿지 않으면 미리보기 아이템을 비활성화
-            if (ghostObject != null)
-            {
                 ghostObject.SetActive(false);
-            }
         }
     }
 }
