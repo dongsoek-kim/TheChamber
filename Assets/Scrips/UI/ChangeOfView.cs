@@ -35,7 +35,5 @@ public class ChangeOfView : MonoBehaviour
         currentView = (currentView == View.Fps) ? View.Tps : View.Fps;
         UpdateCameraState();
     }
-
-
 }
 

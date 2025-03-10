@@ -34,7 +34,6 @@ public class PickUp : MonoBehaviour
     {
         if (hit.collider.gameObject != curInteractGameObject)
         {
-            Debug.Log(hit);
             curInteractGameObject = hit.collider.gameObject;
             curInteractable = hit.collider.GetComponent<IItem>();
         }
