@@ -52,12 +52,11 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (canMove)
-        {
+     
             float targetSpeed = isMoving ? (isRunning ? runSpeed : moveSpeed) : 0f;
             currentSpeed = Mathf.Lerp(currentSpeed, targetSpeed, Time.deltaTime / accelerationTime);
             Move();
-        }
+
     }
 
     private void LateUpdate()
@@ -87,7 +86,7 @@ public class PlayerController : MonoBehaviour
     }
     public void OnMove(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed&&canMove)
         {
             moveSpeed = walkSpeed;
             animator.SetBool("isMoving", true);
@@ -108,15 +107,11 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("isBackWard", false);
             }
         }
-        else if (context.phase == InputActionPhase.Canceled)
+        else if (context.phase == InputActionPhase.Canceled||!canMove)
         {
-            // 이동을 멈추면 isMoving을 false로 설정
             animator.SetBool("isMoving", false);
-
-            // 뒤로 이동하지 않는 상태로 설정
             animator.SetBool("isBackWard", false);
             isMoving = false;
-            // 입력 초기화
             curMovementInput = Vector2.zero;
         }
     }
@@ -148,7 +143,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Started && IsGrounded())
+        if (context.phase == InputActionPhase.Started && IsGrounded()&&canMove)
         {
             animator.SetTrigger("isJumping");
             _rigidbody.AddForce(Vector2.up * jumpPower, ForceMode.Impulse);
@@ -248,6 +243,7 @@ public class PlayerController : MonoBehaviour
     {
         canMove = false;
         canLook = false;
+        curMovementInput = Vector2.zero;
         yield return new WaitForSeconds(time);
         canMove = true;
         canLook = true;

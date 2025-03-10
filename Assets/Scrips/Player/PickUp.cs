@@ -29,6 +29,15 @@ public class PickUp : MonoBehaviour
             RaycastHelper.ProcessRaycast(maxCheckDistance, HandleInteraction);
         }
     }
+    private void OnEnable()
+    {
+        ChangeOfView.OnViewChanged += HandleViewChanged;
+    }
+
+    private void OnDisable()
+    {
+        ChangeOfView.OnViewChanged -= HandleViewChanged;
+    }
 
     void HandleInteraction(RaycastHit hit)
     {
@@ -67,7 +76,17 @@ public class PickUp : MonoBehaviour
             curInteractGameObject = null;
             curInteractable = null;
         }
-       
+    }
+    private void HandleViewChanged(View newView)
+    {
+        if (newView == View.Tps)
+        {
+            maxCheckDistance = 5f;
+        }
+        else
+        {
+            maxCheckDistance = 3;
+        }
     }
 
 }

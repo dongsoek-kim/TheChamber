@@ -25,7 +25,15 @@ public class Arrange : MonoBehaviour
                 RaycastHelper.ProcessRaycast(arrangeDistance, HandleGhostPlacement);
             }
     }
+    private void OnEnable()
+    {
+        ChangeOfView.OnViewChanged += HandleViewChanged;
+    }
 
+    private void OnDisable()
+    {
+        ChangeOfView.OnViewChanged -= HandleViewChanged;
+    }
     public void OnArrange(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started && CharacterManager.Instance.Player.hand.NowEuqipped())
@@ -57,6 +65,18 @@ public class Arrange : MonoBehaviour
         else
         {
                 ghostObject.SetActive(false);
+        }
+    }
+    private void HandleViewChanged(View newView)
+    {
+        if (newView == View.Tps)
+        {
+            arrangeDistance = 5f;
+        }
+        else
+        {
+            // 다른 뷰일 때 기본값 또는 원하는 값으로 설정
+            arrangeDistance = 3f;
         }
     }
 }

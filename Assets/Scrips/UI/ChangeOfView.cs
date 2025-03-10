@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +15,7 @@ public class ChangeOfView : MonoBehaviour
     public Camera Tps;
 
     private View currentView = View.Fps;
-
+    public static event Action<View> OnViewChanged;
     private void UpdateCameraState()
     {
         switch (currentView)
@@ -34,6 +35,7 @@ public class ChangeOfView : MonoBehaviour
     {
         currentView = (currentView == View.Fps) ? View.Tps : View.Fps;
         UpdateCameraState();
+        OnViewChanged?.Invoke(currentView);
     }
 }
 
