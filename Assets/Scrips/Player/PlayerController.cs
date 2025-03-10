@@ -215,7 +215,6 @@ public class PlayerController : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        Debug.Log("E´­·µ´Ù");
         Camera camera;
         camera= Camera.main;
         float maxCheckDistance = 20;

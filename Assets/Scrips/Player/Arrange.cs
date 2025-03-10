@@ -38,7 +38,16 @@ public class Arrange : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Started && CharacterManager.Instance.Player.hand.NowEuqipped())
         {
-            Instantiate(CharacterManager.Instance.Player.itemData.dropPrefab, ghostObject.transform.position, Quaternion.identity);
+            //Instantiate(CharacterManager.Instance.Player.itemData.dropPrefab, ghostObject.transform.position, Quaternion.identity);
+            
+            GameObject dropInstance = Instantiate(CharacterManager.Instance.Player.itemData.dropPrefab, ghostObject.transform.position, Quaternion.identity);
+
+            // 만약 ghostObject가 moving platform 위에 생성되었다면 (즉, 부모가 있다면)
+            if (ghostObject.transform.parent != null && ghostObject.transform.parent.CompareTag("MoivgPlatform"))
+            {
+                dropInstance.transform.SetParent(ghostObject.transform.parent);
+            }
+            
             CharacterManager.Instance.Player.hand.Arrange();
             CharacterManager.Instance.Player.itemData = null;
             Destroy(ghostObject);
@@ -59,12 +68,28 @@ public class Arrange : MonoBehaviour
                 Mathf.RoundToInt(hit.point.z)
             );
 
-                ghostObject.SetActive(true);
+            ghostObject.SetActive(true);
 
+        }
+        else if ((hit.collider.CompareTag("MoivgPlatform") && hit.normal == Vector3.up))
+        {
+            if (ghostObject == null)
+            {
+                ghostObject = Instantiate(CharacterManager.Instance.Player.itemData.ghostPrefab, hit.point, Quaternion.identity);
+                // ghostObject의 부모를 충돌한 moving platform으로 설정
+                ghostObject.transform.SetParent(hit.collider.transform);
+            }
+            ghostObject.transform.position = new Vector3(
+                Mathf.RoundToInt(hit.point.x),
+                hit.point.y-0.5f,
+                Mathf.RoundToInt(hit.point.z)
+            );
+            ghostObject.SetActive(true);
         }
         else
         {
-                ghostObject.SetActive(false);
+            ghostObject.transform.SetParent(null);
+            ghostObject.SetActive(false);
         }
     }
     private void HandleViewChanged(View newView)
