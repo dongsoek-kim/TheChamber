@@ -27,6 +27,10 @@ public class DoorEnd : MonoBehaviour
             StartCoroutine(TriggerDoorEnding());
         }
     }
+    /// <summary>
+    /// 문과 부딫치면 엔딩 연출
+    /// </summary>
+    /// <returns></returns>
 
     private IEnumerator TriggerDoorEnding()
     {

@@ -46,7 +46,9 @@ public class Oil : MonoBehaviour
     {
         curValue = Mathf.Max(curValue - value, 0);
     }
-
+    /// <summary>
+    /// 달리면 더 빨리 소모
+    /// </summary>
     public void RunStart()
     {
         passiveValue *= 2;

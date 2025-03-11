@@ -15,7 +15,10 @@ public class Handle : MonoBehaviour
     {
         controller=GetComponent<PlayerController>();
     }
-
+    /// <summary>
+    /// 손에 프리팹을 생성해주는 메서드
+    /// </summary>
+    /// <param name="data"></param>
     public void Equip(ItemData data)
     {
         if (!nowEuqipped)
@@ -25,7 +28,9 @@ public class Handle : MonoBehaviour
             nowEuqipped = true;
         }
     }
-
+    /// <summary>
+    /// 손에든 프리팹을 파괴하는 메서드
+    /// </summary>
    public void Arrange()
     {
         if (curHandleItem != null)

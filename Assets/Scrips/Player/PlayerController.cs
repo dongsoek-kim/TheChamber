@@ -52,6 +52,10 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
     }
 
+    /// <summary>
+    /// 움직임을 위한 업데이트
+    /// 키보드 입력시, 달리기중일시 따라 값변환
+    /// </summary>
     void FixedUpdate()
     {
      
@@ -69,6 +73,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 플레이어 이동을 위한 메서드
+    /// </summary>
     void Move()
     {
         Vector3 dir = transform.forward * curMovementInput.y + transform.right * curMovementInput.x;
@@ -78,6 +85,9 @@ public class PlayerController : MonoBehaviour
         _rigidbody.velocity = dir;
     }
 
+    /// <summary>
+    /// 카메라 무빙을 위한 메서드
+    /// </summary>
     void CameraLook()
     {
         camCourXRot += mouseDelta.y * lookSensitivity;
@@ -86,6 +96,11 @@ public class PlayerController : MonoBehaviour
 
         transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
     }
+
+    /// <summary>
+    /// 방향키 입력시 실행
+    /// </summary>
+    /// <param name="context"></param>
     public void OnMove(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed&&canMove)
@@ -118,6 +133,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Shift입력시 실행
+    /// </summary>
+    /// <param name="context"></param>
     public void OnRun(InputAction.CallbackContext context)
     {
         if (isBackward)
@@ -138,10 +157,20 @@ public class PlayerController : MonoBehaviour
 
         }
     }
+
+    /// <summary>
+    /// 마우스 벡터값을 계속 받음
+    /// </summary>
+    /// <param name="context"></param>
     public void OnLook(InputAction.CallbackContext context)
     {
         mouseDelta = context.ReadValue<Vector2>();
     }
+
+    /// <summary>
+    /// 스페이스 입력시 실행
+    /// </summary>
+    /// <param name="context"></param>
 
     public void OnJump(InputAction.CallbackContext context)
     {
@@ -152,6 +181,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 점프플랫폼에 올라갔을때 실행
+    /// </summary>
+    /// <param name="jumpPower"></param>
     public void JumpPlatform(float jumpPower)
     {
         if (!isOnPlatform)
@@ -168,6 +201,9 @@ public class PlayerController : MonoBehaviour
         isOnPlatform = false;
     }
 
+    /// <summary>
+    /// 가속발판에 올라갔을때 실행
+    /// </summary>
     public void AccelerationPlatform()
     {
         if (waitUntilGroundedCoroutine != null)
@@ -181,6 +217,10 @@ public class PlayerController : MonoBehaviour
     {
         waitUntilGroundedCoroutine=StartCoroutine(WaitUntilGrounded());
     }
+    /// <summary>
+    /// 가속발판에서 내려오고 땅에 닿기 전까지 속도 유지용 메서드
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator WaitUntilGrounded()
     {
         while (!IsGrounded())
@@ -193,6 +233,11 @@ public class PlayerController : MonoBehaviour
 
         waitUntilGroundedCoroutine = null;
     }
+
+    /// <summary>
+    /// 플레이어가  땅에 있는지 검출하는 메서드
+    /// </summary>
+    /// <returns></returns>
     bool IsGrounded()
     {
 
@@ -206,6 +251,10 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+    /// <summary>
+    /// 탭 클릭시 옵션창 토글메서드
+    /// </summary>
+    /// <param name="context"></param>
     public void OnOption(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)
@@ -215,6 +264,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 키패드와 연동되는 메서드
+    /// </summary>
+    /// <param name="context"></param>
     public void OnInteract(InputAction.CallbackContext context)
     {
         Camera camera;
@@ -236,6 +289,9 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    /// <summary>
+    /// 초기화용 메서드 플레이어를 멈추고 초기위치로 이동
+    /// </summary>
     public void Restart()
     {
         Dontmove();

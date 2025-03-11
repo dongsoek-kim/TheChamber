@@ -18,6 +18,12 @@ public class CrouchController : MonoBehaviour
         player = CharacterManager.Instance.Player;
         animator = player.controller.animator;
     }
+
+    /// <summary>
+    /// 플레이어 앞에 충돌체와 충돌하면
+    /// 벽이있음을 알리는 메서드
+    /// </summary>
+    /// <param name="other"></param>
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Ground"))
@@ -66,6 +72,13 @@ public class CrouchController : MonoBehaviour
             }
         }
     }
+
+    /// <summary>
+    /// 기어오르는 움직임을 자연스럽게 하는 메서드
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="duration"></param>
+    /// <returns></returns>
     private IEnumerator MovePlayerSmooth(Vector3 target, float duration)
     {
         Vector3 startPos = player.transform.position;

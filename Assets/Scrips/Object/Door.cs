@@ -1,5 +1,5 @@
 using System.Collections;
-using UnityEditor.Build;
+//using UnityEditor.Build;
 using UnityEngine;
 
 public class Door : MonoBehaviour
@@ -16,6 +16,9 @@ public class Door : MonoBehaviour
         rightDoorOriginalPos = rightDoor.transform.position;
     }
 
+    /// <summary>
+    /// 키카드소지여부 판별이후 소지시 문 열어주는 메서드
+    /// </summary>
     public void DoorOpen()
     {
         if (HasKeycard(Keycard))
@@ -32,6 +35,10 @@ public class Door : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 문열고 닫는 동작 메서드
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator OpenAndCloseDoor()
     {
         Vector3 leftDoorTarget = leftDoorOriginalPos + leftDoor.transform.forward * 1.5f;
@@ -69,7 +76,11 @@ public class Door : MonoBehaviour
         rightDoor.transform.position = rightDoorOriginalPos;
         doorOpen = false;
     }
-
+    /// <summary>
+    /// 키카드 보유여부 판별 메서드
+    /// </summary>
+    /// <param name="keycard"></param>
+    /// <returns></returns>
     public bool HasKeycard(Keycard keycard)
     {
         return CharacterManager.Instance.Player.keycard[(int)keycard];

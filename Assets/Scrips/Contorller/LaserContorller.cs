@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class LaserContorller : MonoBehaviour
 {
@@ -28,16 +27,15 @@ public class LaserContorller : MonoBehaviour
     public GameObject oilTank;
 
     public TextMeshProUGUI text;
-    // Start is called before the first frame update
+
+
     void Start()
     {
-        // 시작 시 모든 레이저를 비활성화
         foreach (GameObject laser in lasers)
         {
             laser.SetActive(false);
         }
 
-        // 배열 초기화
         targetRotations = new Quaternion[lasers.Length];
         for (int i = 0; i < lasers.Length; i++)
         {
@@ -66,6 +64,10 @@ public class LaserContorller : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 버튼을 보고있는지 판별
+    /// </summary>
+    /// <param name="hit"></param>
     public void HandleLaserButton(RaycastHit hit)
     {
         if(hit.collider.CompareTag("LaserButton") && LaserEnabled)
@@ -79,6 +81,10 @@ public class LaserContorller : MonoBehaviour
             text.gameObject.SetActive(false);
         }
     }
+    /// <summary>
+    /// 버튼을 본 상태로 상호작용을 누르면 레이저시스템 시작
+    /// </summary>
+    /// <param name="context"></param>
     public void OnLaserButton(InputAction.CallbackContext context)
     {
         if (!isButton)
@@ -94,6 +100,14 @@ public class LaserContorller : MonoBehaviour
         ActivateLasers();
         if (tryCount > 1) StartCoroutine(MoveObjectToPosition(shortCut, new Vector3(0, shortCut.transform.position.y, shortCut.transform.position.z), 1f));
     }
+
+    /// <summary>
+    /// 관련된 오브젝트틀 이동
+    /// </summary>
+    /// <param name="obj"></param>
+    /// <param name="targetPosition"></param>
+    /// <param name="duration"></param>
+    /// <returns></returns>
     private IEnumerator MoveObjectToPosition(GameObject obj, Vector3 targetPosition, float duration)
     {
         Vector3 startPosition = obj.transform.position;
@@ -109,6 +123,9 @@ public class LaserContorller : MonoBehaviour
         obj.transform.position = targetPosition;
     }
 
+    /// <summary>
+    /// 레이저들 켜주는 메서드
+    /// </summary>
     public void ActivateLasers()
     {
         foreach (GameObject laser in lasers)
@@ -118,7 +135,10 @@ public class LaserContorller : MonoBehaviour
         StartCoroutine(UpdateRotationsRoutine());
     }
 
-
+    /// <summary>
+    /// 레이저가 일정 각도내에서 움직이게 조절하는 메서드
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator UpdateRotationsRoutine()
     {
         while (true)
@@ -133,7 +153,10 @@ public class LaserContorller : MonoBehaviour
             yield return new WaitForSeconds(changeInterval);
         }
     }
-
+    /// <summary>
+    /// 레이저에 닿았을때 실행하는 메서드
+    /// 초기화
+    /// </summary>
     public void Reset()
     {
         foreach (GameObject laser in lasers)

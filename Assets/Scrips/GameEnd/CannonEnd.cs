@@ -26,6 +26,10 @@ public class CannonEnd : MonoBehaviour
     {
         player = CharacterManager.Instance.Player;
     }
+    /// <summary>
+    /// 플레이어가 근처에있으면 동작
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -34,7 +38,10 @@ public class CannonEnd : MonoBehaviour
             text.gameObject.SetActive(true);
         }
     }
-
+    /// <summary>
+    /// 플레이어가 멀어지면 활성화 꺼줌
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -67,10 +74,18 @@ public class CannonEnd : MonoBehaviour
             Application.Quit();
         }
     }
+    /// <summary>
+    /// 코루틴 시작
+    /// 1초 딜레이용
+    /// </summary>
     void CoroutineStart()
     {
         StartCoroutine(OnCannonEnd());
     }
+    /// <summary>
+    /// 카메라무빙을 통해 엔딩 연출
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator OnCannonEnd()
     {
         float moveDuration = 3f;

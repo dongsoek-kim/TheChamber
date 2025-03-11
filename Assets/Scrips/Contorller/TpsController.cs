@@ -26,7 +26,9 @@ public class TpsController : MonoBehaviour
             RaycastFromPlayer();
         }
     }
-
+    /// <summary>
+    /// 플레이어와 카메라 사이에 충돌체가있으면 카메라를 그 위치로 이동시켜주는 메서드
+    /// </summary>
     private void RaycastFromPlayer()
     {
         Vector3 direction = (initTransform.position - PlayerTransform.position).normalized;
@@ -44,51 +46,5 @@ public class TpsController : MonoBehaviour
         {
             this.transform.position = initTransform.position;
         }
-
-
-        Debug.DrawRay(PlayerTransform.position, direction * distance, Color.red, checkRate);
     }
 }
-
-
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
-
-//public class TpsController : MonoBehaviour
-//{
-//    [SerializeField] private Transform initTransform;
-//    [SerializeField] private Transform PlayerTrnasform;
-//    float distance;
-
-//    public float checkRate = 0.05f;
-//    private float lastCheckTime;
-
-//    void Update()
-//    {
-//        if (Time.time - lastCheckTime > checkRate)
-//        {
-//            lastCheckTime = Time.time;
-//            RaycastController.ProcessRaycast(distance, HandleChangeTransform);
-//        }
-//    }
-//    private void Awake()
-//    {
-//        distance = Vector3.Distance(initTransform.position, PlayerTrnasform.position);
-//    }
-//    private void HandleChangeTransform(RaycastHit hit)
-//    {
-//        Vector3 cameradir = (initTransform.position - PlayerTrnasform.position).normalized;
-//        float hitDistance = Vector3.Distance(PlayerTrnasform.position, hit.point);
-//        if (hitDistance < distance)
-//        {
-//            float offset = 0.2f; 
-//            float newDist = Mathf.Max(hitDistance - offset, 0f);
-//            this.transform.position = PlayerTrnasform.position + cameradir * newDist;
-//        }
-//        else 
-//        {
-//            this.transform.position = initTransform.position;
-//        }
-//    }
-//}

@@ -5,6 +5,7 @@ public class SoundManager : MonoBehaviour
 {
     public static SoundManager Instance;
 
+    //**********미완성입니다***********//
 
     [Header("BGM")]
     public AudioClip[] bgmcilp;

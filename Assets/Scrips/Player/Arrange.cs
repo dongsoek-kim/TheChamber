@@ -34,11 +34,15 @@ public class Arrange : MonoBehaviour
     {
         ChangeOfView.OnViewChanged -= HandleViewChanged;
     }
+
+    /// <summary>
+    /// 플레이어가 오른쪽클릭시 위치에 발판 설치
+    /// </summary>
+    /// <param name="context"></param>
     public void OnArrange(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started && CharacterManager.Instance.Player.hand.NowEuqipped())
         {
-            //Instantiate(CharacterManager.Instance.Player.itemData.dropPrefab, ghostObject.transform.position, Quaternion.identity);
             
             GameObject dropInstance = Instantiate(CharacterManager.Instance.Player.itemData.dropPrefab, ghostObject.transform.position, Quaternion.identity);
 
@@ -53,7 +57,12 @@ public class Arrange : MonoBehaviour
             Destroy(ghostObject);
         }
     }
-
+    /// <summary>
+    /// 플레이어 에임에 가장 가까운 바닥에
+    /// 반투명한 플랫폼을 미리 위치하여
+    /// 어디에 설치될지 보여줌
+    /// </summary>
+    /// <param name="hit"></param>
     void HandleGhostPlacement(RaycastHit hit)
     {
         if (hit.collider.CompareTag("Ground") && hit.normal == Vector3.up)
@@ -92,6 +101,11 @@ public class Arrange : MonoBehaviour
             ghostObject.SetActive(false);
         }
     }
+
+    /// <summary>
+    /// Tps,Fps에 따른 검출 거리 변환
+    /// </summary>
+    /// <param name="newView"></param>
     private void HandleViewChanged(View newView)
     {
         if (newView == View.Tps)
@@ -100,7 +114,6 @@ public class Arrange : MonoBehaviour
         }
         else
         {
-            // 다른 뷰일 때 기본값 또는 원하는 값으로 설정
             arrangeDistance = 3f;
         }
     }

@@ -12,6 +12,10 @@ public class Portal : MonoBehaviour
     {
         player = CharacterManager.Instance.Player;
     }
+    /// <summary>
+    /// 플레이어가 부딫히면 메서드 실행
+    /// </summary>
+    /// <param name="other"></param>
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player")&& !isCoroutineRunning)
@@ -20,7 +24,11 @@ public class Portal : MonoBehaviour
             StartCoroutine(PlayerGoStart());
         }
     }
-
+    /// <summary>
+    /// 초기장소로 돌아가는 연출
+    /// 플레이어는 정지하고 파티클이 많아진다
+    /// </summary>
+    /// <returns></returns>
     IEnumerator PlayerGoStart()
     {
         isCoroutineRunning = true;

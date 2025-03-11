@@ -13,13 +13,11 @@ public class PickUp : MonoBehaviour
 
     new private Camera camera;
 
-    // Start is called before the first frame update
     void Start()
     {
         camera = Camera.main;
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -38,7 +36,10 @@ public class PickUp : MonoBehaviour
     {
         ChangeOfView.OnViewChanged -= HandleViewChanged;
     }
-
+    /// <summary>
+    /// 에임에 있는 물건이 IITem인터페이스면 저장 아니면 null반환
+    /// </summary>
+    /// <param name="hit"></param>
     void HandleInteraction(RaycastHit hit)
     {
         if (hit.collider.gameObject != curInteractGameObject)
@@ -53,6 +54,12 @@ public class PickUp : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handel,KeyCard 레이어에 따른 동작
+    /// Hamdel 일 경우 손에 장착
+    /// KeyCard 일 경우 인벤토리 습득
+    /// </summary>
+    /// <param name="context"></param>
     public void OnInteractInput(InputAction.CallbackContext context)
     {
         if (curInteractable == null)
@@ -77,6 +84,10 @@ public class PickUp : MonoBehaviour
             curInteractable = null;
         }
     }
+    /// <summary>
+    /// Tps,Fps에따른 거리 변환
+    /// </summary>
+    /// <param name="newView"></param>
     private void HandleViewChanged(View newView)
     {
         if (newView == View.Tps)

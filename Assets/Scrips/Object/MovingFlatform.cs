@@ -17,12 +17,20 @@ public class MovingFlatform : MonoBehaviour
         offset = new Vector3(moveX, moveY, moveZ);
 
     }
-
+    /// <summary>
+    /// 매 프레임마다 인스펙터에서 지정해준 위치로 이동
+    /// 핑퐁을 통해 돌아옴
+    /// </summary>
     void Update()
     {
         float ping = Mathf.PingPong(Time.time * moveSpeed, 1f);
         transform.position = startPos + offset * ping;
     }
+
+    /// <summary>
+    /// 플레이어가 올라탈경우 자식으로 만들어줘서 같이 움직임
+    /// </summary>
+    /// <param name="collision"></param>
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -31,6 +39,10 @@ public class MovingFlatform : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 플레이가 내려가면 자식 해제
+    /// </summary>
+    /// <param name="collision"></param>
     void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("Player"))
