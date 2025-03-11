@@ -6,6 +6,7 @@
 #프로젝트 소개
 -----------
 개인프로젝트입니다. Unity로 개발한 3D 플랫포머 퍼즐형 게임입니다.
+![Image](https://github.com/user-attachments/assets/6ec475d8-b7bc-4c4d-b5e6-d3d94ae913a8)
 
 #개발기간
 ----
