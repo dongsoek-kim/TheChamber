@@ -35,7 +35,7 @@ public class Portal : MonoBehaviour
         float targetStartSpeed = 3f;
         float duration = 2f; 
         float elapsedTime = 0f;
-        player.controller.Dontmove(2);
+        player.controller.Dontmove();
         while (elapsedTime < duration)
         {
             elapsedTime += Time.deltaTime;
@@ -54,7 +54,7 @@ public class Portal : MonoBehaviour
         main.startSpeed = targetStartSpeed;
 
         player.gameObject.transform.position = Vector3.zero;
-
+        player.controller.Canmove();
         isCoroutineRunning = false;
     }
 }

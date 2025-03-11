@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public enum Keycard
@@ -16,6 +17,8 @@ public class Player : MonoBehaviour
     public Handle hand;
     public bool[] keycard=new bool[3];
     public ItemData itemData;
+    private bool isDeath = false;
+    private TextMeshProUGUI text;
     private void Awake()
     {
         CharacterManager.Instance.Player = this;
@@ -26,5 +29,6 @@ public class Player : MonoBehaviour
     private void Update()
     {
         oil.Subtract(oil.passiveValue * Time.deltaTime);
+
     }
 }

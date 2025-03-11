@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    public LaserSystem system;
+    public LaserContorller system;
 
     private void OnTriggerEnter(Collider other)
     {

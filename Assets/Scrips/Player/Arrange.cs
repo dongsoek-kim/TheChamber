@@ -22,7 +22,7 @@ public class Arrange : MonoBehaviour
             if (Time.time - lastCheckTime > checkRate)
             {
                 lastCheckTime = Time.time;
-                RaycastHelper.ProcessRaycast(arrangeDistance, HandleGhostPlacement);
+                RaycastController.ProcessRaycast(arrangeDistance, HandleGhostPlacement);
             }
     }
     private void OnEnable()

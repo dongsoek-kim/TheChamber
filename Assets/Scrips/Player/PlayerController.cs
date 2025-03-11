@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private bool isBackward = false;
     private Coroutine waitUntilGroundedCoroutine;
     public bool canMove=true;
+
     [Header("Look")]
     public Transform cameraContainer;
     public float minXLook;
@@ -37,6 +38,7 @@ public class PlayerController : MonoBehaviour
     public Action option;
     public Action runStart;
     public Action runEnd;
+    public Action reStart;
     private Rigidbody _rigidbody;
     private bool isOnPlatform = false;
     private void Awake()
@@ -234,19 +236,25 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    public void Dontmove(float time)
+    public void Restart()
     {
-        StartCoroutine(DontMoveCoroutine(time));
+        Dontmove();
+        transform.position = Vector3.zero;
+        Invoke("Canmove", 0.3f);
+        reStart?.Invoke();  
     }
-    private IEnumerator DontMoveCoroutine(float time)
+    public void Dontmove()
     {
         canMove = false;
         canLook = false;
         curMovementInput = Vector2.zero;
-        yield return new WaitForSeconds(time);
+    }
+    public void Canmove()
+    {
         canMove = true;
         canLook = true;
     }
+
     void ToggleCursor()
     {
         bool toggle = Cursor.lockState == CursorLockMode.Locked;

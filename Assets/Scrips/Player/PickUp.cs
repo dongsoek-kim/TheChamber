@@ -26,7 +26,7 @@ public class PickUp : MonoBehaviour
         if (Time.time - lastCheckTime > checkRate)
         {
             lastCheckTime = Time.time;
-            RaycastHelper.ProcessRaycast(maxCheckDistance, HandleInteraction);
+            RaycastController.ProcessRaycast(maxCheckDistance, HandleInteraction);
         }
     }
     private void OnEnable()

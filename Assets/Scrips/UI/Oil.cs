@@ -26,6 +26,10 @@ public class Oil : MonoBehaviour
     private void Update()
     {
         uiBar.fillAmount = GetPercentage();
+        if(curValue==0)
+        {
+            Death();
+        }
     }
 
     float GetPercentage()
@@ -52,5 +56,10 @@ public class Oil : MonoBehaviour
     {
         passiveValue /= 2;
         Runstate.gameObject.SetActive(false);
+    }
+    public void Death()
+    {
+        curValue = 100;
+        CharacterManager.Instance.Player.controller.Restart();
     }
 }
